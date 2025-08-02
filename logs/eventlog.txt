@@ -1,4 +1,0 @@
-01-08-2025	05:28:12	4aafd323-377f-4304-81b9-c14c82293f70	Log event emitted!
-01-08-2025	05:38:28	c99d2049-8d7d-409b-9fb4-88c009015e8f	Log event emitted!
-01-08-2025	05:38:40	0f898546-d3c4-434e-9d98-46dc5a825da3	Log event emitted!
-01-08-2025	05:43:10	beae5c61-9ee0-48e1-ba6f-2b42e85ec227	Log event emitted!
