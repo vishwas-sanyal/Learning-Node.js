@@ -9,7 +9,7 @@ class Emitter extends EventEmitter { };
 const myEmitter = new Emitter();
 myEmitter.on('log', (msg, fileName) => logEvents(msg, fileName));
 const PORT = process.env.PORT || 3500;
-const serveFile = async (filePath, contentType, response) => {
+const serverFile = async (filePath, contentType, response) => {
     try {
         const rawData = await fsPromises.readFile(
             filePath,
@@ -73,7 +73,7 @@ const server = http.createServer((req, res) => {
     const fileExists = fs.existsSync(filePath);
 
     if (fileExists) {
-        serveFile(filePath, contentType, res);
+        serverFile(filePath, contentType, res);
     } else {
         switch (path.parse(filePath).base) {
             case 'old-page.html':
@@ -85,7 +85,7 @@ const server = http.createServer((req, res) => {
                 res.end();
                 break;
             default:
-                serveFile(path.join(__dirname, 'views', '404.html'), 'text/html', res);
+                serverFile(path.join(__dirname, 'views', '404.html'), 'text/html', res);
         }
     }
 });
