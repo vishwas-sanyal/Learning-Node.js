@@ -11,10 +11,13 @@ app.use(express.urlencoded({ extended: false }));  //Built-in middleware
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, '/public')));
 // app.use('/subdir', express.static(path.join(__dirname, '/public')));
+const verifyJWT = require('./middleware/verifyJWT');
 
 app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/api/register'));
 app.use('/auth', require('./routes/api/auth'));
+
+app.use(verifyJWT);
 app.use('/employees', require('./routes/api/employees'));
 
 app.use(logger);  //Custom middleware
