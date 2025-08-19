@@ -5,17 +5,21 @@ const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
+const verifyJWT = require('./middleware/verifyJWT');
+const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3500;
 
 app.use(express.urlencoded({ extended: false }));  //Built-in middleware
-app.use(express.json());
+app.use(express.json());  //Built-in middleware for json
+app.use(cookieParser());  //Middleware for cookies
 app.use('/', express.static(path.join(__dirname, '/public')));
 // app.use('/subdir', express.static(path.join(__dirname, '/public')));
-const verifyJWT = require('./middleware/verifyJWT');
 
 app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/api/register'));
 app.use('/auth', require('./routes/api/auth'));
+app.use('/refresh', require('./routes/api/refresh'));
+app.use('/logout', require('./routes/api/logout'));
 
 app.use(verifyJWT);
 app.use('/employees', require('./routes/api/employees'));
